@@ -3,14 +3,9 @@ from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
 
-myDB = client.DiscoBern
+DiscoBern = client.DiscoBern
 
-myColl = myDB['Denkmal']
-
-
-
-
-
+Denkmal = DiscoBern.Denkmal
 
 Kindlifresserbrunnen = {'name': 'Kindlifresserbrunnen',
                         'address': "Kornhausplatz 18",
@@ -31,34 +26,18 @@ Rosengarten = {'name': 'Rosengarten',
                               das Münster und die Aareschlaufe. '''
                }
 
-Denkmäler = {
-    'Kindlifresserbrunnen': Kindlifresserbrunnen,
-    'Rosengarten' : Rosengarten
-}
-
-#rec = myDB.myColl.Denkmal.insert_one(Kindlifresserbrunnen)
 
 
-for i in myDB.myColl.Denkmal.find({'name' : 'Kindlifresserbrunnen'}):
+# DiscoBern.Denkmal.insert_one(Rosengarten)
+# DiscoBern.Denkmal.insert_one(Kindlifresserbrunnen)
+
+
+for i in DiscoBern.Denkmal.find({'name' : 'Kindlifresserbrunnen'}):
     print(i)
 
 
-for i in myDB.myColl.Denkmal.find({'name' : 'Rosengarten'}):
+for i in DiscoBern.Denkmal.find({'name' : 'Rosengarten'}):
     print(i)
 
 
-"""
-if 'address' in Kindlifresserbrunnen:
-    print('address:', Kindlifresserbrunnen['address'])
-else:
-    print('address not found!')
-Kindlifresserbrunnen.pop('address')
-if 'address' in Kindlifresserbrunnen:
-    print('address:', Kindlifresserbrunnen['address'])
-else:
-    print('address not found!')
-for i in Kindlifresserbrunnen:
-    print(i, ': ', Kindlifresserbrunnen[i])
-for denkmal in Denkmäler:
-    print(denkmal, ': ', Denkmäler[denkmal])
-"""
+
