@@ -40,4 +40,9 @@ for i in DiscoBern.Denkmal.find({'name' : 'Rosengarten'}):
     print(i)
 
 
+def addDoc(name):
+    print('addDoc called with name:', name)
+
+
+addDoc('Hans')
 
