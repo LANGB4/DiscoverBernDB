@@ -1,4 +1,3 @@
-
 from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
@@ -26,23 +25,24 @@ Rosengarten = {'name': 'Rosengarten',
                               das Münster und die Aareschlaufe. '''
                }
 
+Bundeshaus = {'name': 'Bundeshaus',
+              'address': "Bundesplatz 3",
+              'buss top': 'Bundesplatz',
+              'Description': '''Als Bundeshaus wird der Sitz von Regierung 
+               und Parlament der Schweizerischen Eidgenossenschaft in der Bundesstadt Bern bezeichnet. 
+               Das Bundeshaus ist ein unter Denkmalschutz stehender symmetrischer Gebäudekomplex 
+               von etwas mehr als 300 Metern Länge'''
+              }
 
 
-# DiscoBern.Denkmal.insert_one(Rosengarten)
-# DiscoBern.Denkmal.insert_one(Kindlifresserbrunnen)
+def addDoc(coll):
+    print('addDoc called:', coll)
+    DiscoBern.Denkmal.insert_one(coll)
 
 
-for i in DiscoBern.Denkmal.find({'name' : 'Kindlifresserbrunnen'}):
-    print(i)
+def findColl():
+    for i in DiscoBern.Denkmal.find({'name': 'Kindlifresserbrunnen'}):
+        print(i)
 
-
-for i in DiscoBern.Denkmal.find({'name' : 'Rosengarten'}):
-    print(i)
-
-
-def addDoc(name):
-    print('addDoc called with name:', name)
-
-
-addDoc('Hans')
-
+    for i in DiscoBern.Denkmal.find({'name': 'Rosengarten'}):
+        print(i)
