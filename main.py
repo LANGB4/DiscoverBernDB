@@ -1,5 +1,12 @@
 from pymongo import MongoClient
 
+
+from tkinter import *
+from tkinter import ttk
+root = Tk()
+ttk.Button(root, text="Hello World").grid()
+root.mainloop()
+
 client = MongoClient('localhost', 27017)
 
 DiscoBern = client.DiscoBern
