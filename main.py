@@ -3,15 +3,12 @@ from pymongo import MongoClient
 
 from tkinter import *
 from tkinter import ttk
+
 root = Tk()
-ttk.Button(root, text="Hello World").grid()
-root.mainloop()
 
 client = MongoClient('localhost', 27017)
 
 DiscoBern = client.DiscoBern
-
-Denkmal = DiscoBern.Denkmal
 
 Kindlifresserbrunnen = {'name': 'Kindlifresserbrunnen',
                         'address': "Kornhausplatz 18",
@@ -60,3 +57,6 @@ for i in result:
     print(i, ':', result[i])
 
     
+ttk.Button(root, text=result['Description']).grid()
+root.mainloop()
+
