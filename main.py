@@ -1,10 +1,4 @@
-from pymongo import MongoClient
-
-
-from tkinter import *
-from tkinter import ttk
-
-root = Tk()
+'''
 
 client = MongoClient('localhost', 27017)
 
@@ -23,19 +17,19 @@ Kindlifresserbrunnen = {'name': 'Kindlifresserbrunnen',
 Rosengarten = {'name': 'Rosengarten',
                'address': "Alter Argauerstalden 31B",
                'buss top': 'Rosengarten',
-               'Description': '''Der Rosengarten gehört zu den schönsten Parks 
+               'Description': 'Der Rosengarten gehört zu den schönsten Parks 
                               der Stadt Bern und bietet einen einmaligen Blick 
                               auf die Dachlandschaft der historischen Altstadt, 
-                              das Münster und die Aareschlaufe. '''
+                              das Münster und die Aareschlaufe. '
                }
 
 Bundeshaus = {'name': 'Bundeshaus',
               'address': "Bundesplatz 3",
               'buss top': 'Bundesplatz',
-              'Description': '''Als Bundeshaus wird der Sitz von Regierung 
+              'Description': 'Als Bundeshaus wird der Sitz von Regierung 
                und Parlament der Schweizerischen Eidgenossenschaft in der Bundesstadt Bern bezeichnet. 
                Das Bundeshaus ist ein unter Denkmalschutz stehender symmetrischer Gebäudekomplex 
-               von etwas mehr als 300 Metern Länge'''
+               von etwas mehr als 300 Metern Länge '
               }
 
 
@@ -49,18 +43,62 @@ def findColl(key, value):
     print(key, ':', value, 'not found!!')
     return {}
 
-#addDoc(Bundeshaus)
+
 
 result = findColl('buss top', 'Zytglogge')
-print(result)
-for i in result:
-    print(i, ':', result[i])
+print(result['_id'])
+
+#for i in result:
+ #   print(i, ':', result[i])
 
     
 
+class Denkmal:
+    def __init__(self, id, name, desc, lati, long):
+        self.id = id
+        self.name = name
+        self.description = desc
+        self.latitide = lati
+        self.longitude = long
 
-frm = ttk.Frame(root, padding=10)
-frm.grid()
-ttk.Label(frm, text=result['Description']).grid(column=0, row=0)
-ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
-root.mainloop()
+
+Bp = Denkmal(0.1,'test','das ist die kurzbeschreibung',41.8755616,-87.6244212)
+print(Bp)
+
+while True:
+    inp = int(input('*** press 0 and then enter to exit ***\n'
+                    '*** press 1 to list all Denkmäler-id present in DB *** \n'
+                    '*** press 2 to add new Denkmal ***\n'))
+
+    if inp == 0:
+        print('closing program, adios')
+        break
+
+    elif inp == 1:
+        for i in DiscoBern.Denkmal.find():
+            print('id: ', i['_id'], 'name:', i['name'])
+
+    elif inp == 2:
+        name = str(input('*** type the name of the denkmal here: \n'))
+        print(name, 'is noted')
+'''
+
+import sys
+import urllib.request
+
+# Verbindung zu einer URL
+
+try:
+    u = urllib.request.urlopen("http://localhost/DiscoBern/index.html")
+
+except:
+    print("Fehler")
+    sys.exit(0)
+
+# Liest alle Zeilen in eine Liste
+li = u.readlines()
+# Schliesst die Verbindung
+u.close()
+# Ausgabe der Liste
+for element in li:
+    print(element)
