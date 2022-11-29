@@ -36,16 +36,22 @@ Bundeshaus = {'name': 'Bundeshaus',
               }
 
 
-def addDoc(coll):
+def add_doc(coll):
     DiscoBern.Denkmal.insert_one(coll)
     print('Document added:', coll)
 
 
-def findColl(key, value):
+def find_coll(key, value):
     for i in DiscoBern.Denkmal.find({key: value}):
         return i
     print(key, ':', value, 'not found!!')
     return {}
+
+def show_all():
+    for i in DiscoBern.Denkmal.find():
+            print(i)
+    return i
+
 
 
 

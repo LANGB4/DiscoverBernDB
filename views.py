@@ -1,10 +1,6 @@
 from flask import Blueprint, render_template, jsonify
-from data import Bundeshaus, Kindlifresserbrunnen
-from pymongo import MongoClient
+from data import Bundeshaus, Kindlifresserbrunnen, show_all, find_coll
 
-client = MongoClient('localhost', 27017)
-
-DiscoBern = client.DiscoBern
 
 
 
@@ -25,6 +21,5 @@ def get_json():
 
 @views.route('/test')
 def test():
-    for i in DiscoBern.Denkmal.find({'name':'Kindlifresserbrunnen'}):
-            print('id: ', i['_id'], 'name:', i['name'])
-    return render_template('index.html', id = i['_id'], name = i['name'], info = 'This is the test page'  )
+    result = find_coll('name','Kindlifresserbrunnen')
+    return render_template('index.html',  name = result, info = show_all()  )
