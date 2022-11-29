@@ -1,4 +1,4 @@
-'''
+from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
 
@@ -17,19 +17,19 @@ Kindlifresserbrunnen = {'name': 'Kindlifresserbrunnen',
 Rosengarten = {'name': 'Rosengarten',
                'address': "Alter Argauerstalden 31B",
                'buss top': 'Rosengarten',
-               'Description': 'Der Rosengarten gehört zu den schönsten Parks 
-                              der Stadt Bern und bietet einen einmaligen Blick 
-                              auf die Dachlandschaft der historischen Altstadt, 
-                              das Münster und die Aareschlaufe. '
+               'Description': 'Der Rosengarten gehört zu den schönsten Parks' 
+                              'der Stadt Bern und bietet einen einmaligen Blick' 
+                              'auf die Dachlandschaft der historischen Altstadt,' 
+                              'das Münster und die Aareschlaufe. '
                }
 
 Bundeshaus = {'name': 'Bundeshaus',
               'address': "Bundesplatz 3",
               'buss top': 'Bundesplatz',
-              'Description': 'Als Bundeshaus wird der Sitz von Regierung 
-               und Parlament der Schweizerischen Eidgenossenschaft in der Bundesstadt Bern bezeichnet. 
-               Das Bundeshaus ist ein unter Denkmalschutz stehender symmetrischer Gebäudekomplex 
-               von etwas mehr als 300 Metern Länge '
+              'Description': 'Als Bundeshaus wird der Sitz von Regierung' 
+               'und Parlament der Schweizerischen Eidgenossenschaft in der Bundesstadt Bern bezeichnet.' 
+               'Das Bundeshaus ist ein unter Denkmalschutz stehender symmetrischer Gebäudekomplex'
+               'von etwas mehr als 300 Metern Länge '
               }
 
 
@@ -63,7 +63,7 @@ class Denkmal:
 
 
 Bp = Denkmal(0.1,'test','das ist die kurzbeschreibung',41.8755616,-87.6244212)
-print(Bp)
+
 
 while True:
     inp = int(input('*** press 0 and then enter to exit ***\n'
@@ -81,24 +81,4 @@ while True:
     elif inp == 2:
         name = str(input('*** type the name of the denkmal here: \n'))
         print(name, 'is noted')
-'''
 
-import sys
-import urllib.request
-
-# Verbindung zu einer URL
-
-try:
-    u = urllib.request.urlopen("http://localhost/DiscoBern/index.html")
-
-except:
-    print("Fehler")
-    sys.exit(0)
-
-# Liest alle Zeilen in eine Liste
-li = u.readlines()
-# Schliesst die Verbindung
-u.close()
-# Ausgabe der Liste
-for element in li:
-    print(element)
