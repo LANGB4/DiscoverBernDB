@@ -1,5 +1,11 @@
 from flask import Blueprint, render_template, jsonify
-from database import Bundeshaus
+from data import Bundeshaus, Kindlifresserbrunnen
+from pymongo import MongoClient
+
+client = MongoClient('localhost', 27017)
+
+DiscoBern = client.DiscoBern
+
 
 
 views = Blueprint(__name__, "views")
@@ -13,19 +19,12 @@ def detail(sightname):
     return render_template('index.html', info = 'here you see the detailed view of ' + sightname)
 
 
-Kindlifresserbrunnen = {'name': 'Kindlifresserbrunnen',
-                        'address': "Kornhausplatz 18",
-                        'buss top': 'Zytglogge',
-                        'Description': 'Die Brunnenfigur ist eine'
-                                        'auf ein Postament lehnende Kinderschreckfigur'
-                                        ' (Kinderfresser, im Englischen Oger), die gerade'
-                                        ' ein nacktes Kind verschlingt. In einem umgehängten '  
-                                        'Sack befinden sich weitere Kinder. Der Kinderfresser '
-                                        'trägt einen spitzen Hut mit eingerollter Krempe.'
-                        }
-
-
 @views.route('/json')
 def get_json():
-    return jsonify(Bundeshaus)
+    return jsonify(Kindlifresserbrunnen)
 
+@views.route('/test')
+def test():
+    for i in DiscoBern.Denkmal.find({'name':'Kindlifresserbrunnen'}):
+            print('id: ', i['_id'], 'name:', i['name'])
+    return render_template('index.html', id = i['_id'], name = i['name'], info = 'This is the test page'  )

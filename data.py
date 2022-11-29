@@ -4,6 +4,9 @@ client = MongoClient('localhost', 27017)
 
 DiscoBern = client.DiscoBern
 
+
+
+
 Kindlifresserbrunnen = {'name': 'Kindlifresserbrunnen',
                         'address': "Kornhausplatz 18",
                         'buss top': 'Zytglogge',
@@ -45,24 +48,7 @@ def findColl(key, value):
     return {}
 
 
-result = findColl('buss top', 'Zytglogge')
-print(result['_id'])
 
-
-# for i in result:
-#   print(i, ':', result[i])
-
-
-class Denkmal:
-    def __init__(self, id, name, desc, lati, long):
-        self.id = id
-        self.name = name
-        self.description = desc
-        self.latitide = lati
-        self.longitude = long
-
-
-Bp = Denkmal(0.1, 'test', 'das ist die kurzbeschreibung', 41.8755616, -87.6244212)
 
 
 '''
