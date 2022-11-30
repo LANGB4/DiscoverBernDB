@@ -4,17 +4,14 @@ client = MongoClient('localhost', 27017)
 
 DiscoBern = client.DiscoBern
 
-
-
-
 Kindlifresserbrunnen = {'name': 'Kindlifresserbrunnen',
                         'address': "Kornhausplatz 18",
                         'buss top': 'Zytglogge',
-                        'Description': """Die Brunnenfigur ist eine auf ein Postament 
-                                       lehnende Kinderschreckfigur (Kinderfresser, im Englischen Oger),
-                                       die gerade ein nacktes Kind verschlingt. In einem umgehängten
-                                       Sack befinden sich weitere Kinder. Der Kinderfresser trägt einen spitzen 
-                                       Hut mit eingerollter Krempe."""
+                        'Description': 'Die Brunnenfigur ist eine auf ein Postament '
+                                       'lehnende Kinderschreckfigur (Kinderfresser, im Englischen Oger), '
+                                       'die gerade ein nacktes Kind verschlingt. In einem umgehängten '
+                                       'Sack befinden sich weitere Kinder. Der Kinderfresser trägt einen spitzen '
+                                       'Hut mit eingerollter Krempe.'
                         }
 
 Rosengarten = {'name': 'Rosengarten',
@@ -43,9 +40,9 @@ def add_doc(coll):
 
 def find_coll(key, value):
     for i in DiscoBern.Denkmal.find({key: value}):
+        #print(i)
         return i
-    print(key, ':', value, 'not found!!')
-    return {}
+    return 'not found!!'
 
 def show_all():
     for i in DiscoBern.Denkmal.find():
@@ -54,7 +51,7 @@ def show_all():
 
 
 
-
+#find_coll('name','Bundeshaus')
 
 
 '''
