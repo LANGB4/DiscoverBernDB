@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 client = MongoClient('localhost', 27017)
 
@@ -40,7 +41,7 @@ def add_doc(coll):
 
 def find_coll(key, value):
     for i in DiscoBern.Denkmal.find({key: value}):
-        #print(i)
+        print(i)
         return i
     return 'not found!!'
 
@@ -49,9 +50,14 @@ def show_all():
             print(i)
     return i
 
+id = "63724a567a4a7a7fb075a310"
+
+def find_by(id):
+    result = DiscoBern.Denkmal.find_one(ObjectId(id))
+    return result
 
 
-#find_coll('name','Bundeshaus')
+
 
 
 '''

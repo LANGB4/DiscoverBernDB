@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, jsonify, request
-from data import Bundeshaus, Kindlifresserbrunnen, show_all, find_coll
+from data import Bundeshaus, Kindlifresserbrunnen, show_all, find_coll, find_by
 
 
 views = Blueprint(__name__, "views")
@@ -10,8 +10,8 @@ def home():
     return render_template('index.html', info = 'Welcome to the home page!')
 
 
-@views.route('/detail/<sightname>')
-def detail(sightname):
+@views.route('/profile/<sightname>')
+def profile(sightname):
     return render_template('index.html', info = 'here you see the detailed view of ' + sightname)
 
 
@@ -58,8 +58,23 @@ def search():
     try:
         result = find_coll('name', name)
         # querry: /find?name=XYZ
-        return render_template('index.html', info = 'Result: ' + result['Description'])
+        return render_template('index.html', 
+                                info = result['Description'],
+                                name = result['name'], 
+                                id= result['_id'])
     except:
-        return render_template('index.html', info = 'Nothing found, check spelling')
+        return render_template('index.html', 
+                                info = 'Nothing found, check spelling')
 
 
+@views.route('/detail/<_id>')
+def detail(_id):
+    try:
+        result = find_by(_id)
+        return render_template('index.html', 
+                                info = result['Description'],
+                                name = result['name'], 
+                                id= result['_id'])
+    except:
+        return render_template('index.html', 
+                                info = 'Nothing found, wrong QR-Code')
