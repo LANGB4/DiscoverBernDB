@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DiscoBernAPI</title>
   </head>
-  <body style="background-color: rgb(42, 42, 42); color: white">
-    <h1>Testplatform for Discover Bern API solutions</h1>
+  <body style="background-color: rgb(42, 42, 42); color: white; font-family: sans-serif;">
+    <h1>HOME PAGE</h1>
+    {%if sights == 'no_data'%}
+    <p>sights: {{sights}}</p>
+    {%else%}
     {% for sight in sights %}
     <div>
       <ul>
         <li>ID: {{ sight['id'] }}</li>
         <li>NAME: {{ sight['name'] }}</li>
-        <li>INFO: {{ sight['text'] }}</li>
-        <li>ZIP: {{ sight['zip'] }}</li>
         <li>
           <a href="http://127.0.0.1:8000/api/detail/{{ sight['id'] }}">
             DETAILS</a
@@ -25,6 +26,7 @@
       </ul>
     </div>
     {%endfor%}
+    {%endif%}
     <script>
       console.log("hello java script!");
     </script>

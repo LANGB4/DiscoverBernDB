@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, render_template, redirect, abort, url_for
 import requests
 
 
@@ -11,9 +11,12 @@ BASE = 'http://127.0.0.1:5000/'
 @api.route('/')
 def home():
     response = requests.get(BASE + 'sight/all')
-    print(response.json())
-    size = len(response.json())
-    return render_template('index.html', sights = response.json(), size= size)
+    #print(response.json())
+    if 'message' in response.json():
+        print('message in response.json')
+        return render_template('index.html', sights = 'no_data')
+    else:
+        return render_template('index.html', sights = response.json())
 
 
 @api.route('/detail/<sight_id>')
