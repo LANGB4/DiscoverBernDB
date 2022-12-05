@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, abort, url_for
+from flask import Blueprint, render_template, redirect, abort, url_for, request
 import requests
 
 
@@ -34,6 +34,28 @@ def delete(sight_id):
     response = requests.delete(BASE + 'sight/' + sight_id)
     print(response)
     return redirect('/api/')
+
+@api.route('/put', methods=['POST', 'GET'])
+def post():
+    if request.method == 'POST':
+        sight_id = request.form['id']
+        sight_name = request.form['name']
+        sight_text = request.form['text']
+        sight_zip = request.form['zip']
+        try:
+            response = requests.put(BASE + 'sight/' + sight_id, {'name': sight_name, 'text': sight_text, 'zip': sight_zip})
+            print(response.json())
+            return redirect('/api/')
+        except:
+            return render_template('index.html', sights = 'something went wrong..')
+    else:
+        redirect('/api/')
+
+    
+
+
+    
+    ''''''
 
 
 

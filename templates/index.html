@@ -27,8 +27,12 @@
     </div>
     {%endfor%}
     {%endif%}
-    <script>
-      console.log("hello java script!");
-    </script>
+    <form action="/api/put" method="POST"><br>
+      <input type="number" name="id" id="id" required/><br>
+      <input type="name" name="name" id="name" required/><br>
+      <input type="text" name="text" id="text" required/><br>
+      <input type="number" name="zip" id="zip" required/><br>
+      <input type="submit" value="Create Sight" required/><br>
+    </form>
   </body>
 </html>
