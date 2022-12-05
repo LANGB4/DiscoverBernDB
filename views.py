@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, jsonify, request
-from data import Bundeshaus, Kindlifresserbrunnen, show_all, find_coll, find_by
+from data import Bundeshaus, Kindlifresserbrunnen, show_all, find_coll, find_by, JSONEncoder
 
 
 views = Blueprint(__name__, "views")
@@ -32,12 +32,6 @@ def get_json():
 # Code here:
 
 
-@views.route('/test')
-def test():
-    result = find_coll('name','Kindlifresserbrunnen')
-    return render_template('index.html',  name = result, info = show_all()  )
-
-
 
 #TO DO:
 
@@ -48,6 +42,8 @@ def test():
 #add one
 
 # change one
+
+# google SSO?
 
 # search by name:
 
@@ -78,3 +74,19 @@ def detail(_id):
     except:
         return render_template('index.html', 
                                 info = 'Nothing found, wrong QR-Code')
+
+
+
+
+
+#trying to return json, loop to create dict?
+
+@views.route('/test')
+def test():
+    result = find_by('63724a6e57eb8a49e0214769')
+    print('test-log:', type(result))
+    result2 = JSONEncoder().encode(result)
+    result3 = [result2]
+    print('test-log2:', type(result2))
+    return jsonify(result3)
+

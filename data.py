@@ -1,6 +1,18 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
+import json
+from bson import ObjectId
+
+class JSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, ObjectId):
+            return str(o)
+        return json.JSONEncoder.default(self, o)
+
+
+
+
 client = MongoClient('localhost', 27017)
 
 DiscoBern = client.DiscoBern
@@ -41,7 +53,7 @@ def add_doc(coll):
 
 def find_coll(key, value):
     for i in DiscoBern.Denkmal.find({key: value}):
-        print(i)
+        #print(i)
         return i
     return 'not found!!'
 
@@ -50,31 +62,7 @@ def show_all():
             print(i)
     return i
 
-id = "63724a567a4a7a7fb075a310"
-
 def find_by(id):
     result = DiscoBern.Denkmal.find_one(ObjectId(id))
     return result
 
-
-
-
-
-'''
-while True:
-    inp = int(input('*** press 0 and then enter to exit ***\n'
-                    '*** press 1 to list all Denkmäler-id present in DB *** \n'
-                    '*** press 2 to add new Denkmal ***\n'))
-
-    if inp == 0:
-        print('closing program, adios')
-        break
-
-    elif inp == 1:
-        for i in DiscoBern.Denkmal.find():
-            print('id: ', i['_id'], 'name:', i['name'])
-
-    elif inp == 2:
-        name = str(input('*** type the name of the denkmal here: \n'))
-        print(name, 'is noted')
-'''
