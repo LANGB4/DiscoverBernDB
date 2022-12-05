@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, jsonify, request
+from flask import Blueprint, render_template, redirect
 import requests
 
 
@@ -18,11 +18,18 @@ def home():
 @api.route('/detail/<sight_id>')
 def get_json(sight_id):
     response = requests.get(BASE + 'sight/' + sight_id)
+    
     return render_template('detail.html', 
                             id = sight_id,
                             info = response.json()['text'],
                             name = response.json()['name'],
                             zip = response.json()['zip'],)
+
+@api.route('/delete/<sight_id>')
+def delete(sight_id):
+    response = requests.delete(BASE + 'sight/' + sight_id)
+    print(response)
+    return redirect('/api/')
 
 
 
