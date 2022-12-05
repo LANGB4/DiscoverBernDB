@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, jsonify, request
-from data import Bundeshaus, Kindlifresserbrunnen, show_all, find_coll, find_by, JSONEncoder
+from mongo import Bundeshaus, Kindlifresserbrunnen, show_all, find_coll, find_by, JSONEncoder
 
 
 views = Blueprint(__name__, "views")
@@ -43,7 +43,7 @@ def get_json():
 
 # change one
 
-# google SSO?
+
 
 # search by name:
 

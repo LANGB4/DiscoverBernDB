@@ -14,9 +14,12 @@ def home():
 
 
 @api.route('/detail/<sight_id>')
-def detail(sight_id):
-    #response = requests.get(BASE + 'sight/'+sight_id)
-    response = requests.get(BASE + 'sight/1')
-    print('id:',1,response.json())
-    return render_template('index.html', info = response.json())
+def get_json(sight_id):
+    response = requests.get(BASE + 'sight/' + sight_id)
+    return render_template('index.html', 
+                            id = sight_id,
+                            info = response.json()['text'],
+                            name = response.json()['name'],
+                            zip = response.json()['zip'],)
+
 
