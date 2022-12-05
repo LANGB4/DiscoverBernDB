@@ -12,7 +12,7 @@ BASE = 'http://127.0.0.1:5000/'
 def home():
     response = requests.get(BASE + 'sight/all')
     print(response.json())
-    return render_template('index.html', info = response.json())
+    return render_template('index.html', sights = response.json())
 
 
 @api.route('/detail/<sight_id>')

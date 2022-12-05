@@ -60,7 +60,7 @@ def find_coll(key, value):
 def show_all():
     for i in DiscoBern.Denkmal.find():
             print(i)
-    return i
+    return DiscoBern.Denkmal.find()
 
 def find_by(id):
     result = DiscoBern.Denkmal.find_one(ObjectId(id))

@@ -8,14 +8,16 @@
   </head>
   <body style="background-color: rgb(42, 42, 42); color: white">
     <h1>Testplatform for Discover Bern API solutions</h1>
+    {% for sight in sights %}
     <div>
       <ul>
-        <li>ID: {{ id }}</li>
-        <li>NAME: {{ name }}</li>
-        <li>INFO: {{ info }}</li>
-        <li>ZIP: {{ zip }}</li>
+        <li>ID: {{ sight['id'] }}</li>
+        <li>NAME: {{ sight['name'] }}</li>
+        <li>INFO: {{ sight['text'] }}</li>
+        <li>ZIP: {{ sight['zip'] }}</li>
       </ul>
     </div>
+    {%endfor%}
     <script>
       console.log("hello java script!");
     </script>
