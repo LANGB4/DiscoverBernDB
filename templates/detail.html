@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DiscoBernAPI</title>
-  </head>
-  <body style="background-color: rgb(42, 42, 42); color: white">
-    <h1>Detail: {{ name }}</h1>
-    <div>
-      <ul style="list-style-type: none">
-        <li>NAME: {{ name }}</li>
-        <li>INFO: {{ info }}</li>
-        <li>ZIP: {{ zip }}</li>
-        <li>
-          <a href="http://127.0.0.1:8000/api/delete/{{ id }}"> REMOVE</a>
-        </li>
+{% extends 'base.html' %} {% block body %}
+<h2>Detail: {{ name }}</h2>
+<p>{{message}}</p>
+<div>
+  <ul style="list-style-type: none">
+    <li>NAME: {{ name }}</li>
+    <li>INFO: {{ info }}</li>
+    <li>ZIP: {{ zip }}</li>
+    <li><br /></li>
+    <li>
+      <a href="http://127.0.0.1:8000/api/delete/{{ id }}"> REMOVE</a>
+    </li>
 
-        <li>
-          <a href="http://127.0.0.1:8000/api/"> BACK</a>
-        </li>
-      </ul>
-    </div>
-  </body>
-</html>
+    <li>
+      <a href="http://127.0.0.1:8000/api/"> BACK</a>
+    </li>
+  </ul>
+</div>
+{% endblock%}

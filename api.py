@@ -10,8 +10,11 @@ BASE = 'http://127.0.0.1:5000/'
 
 @api.route('/')
 def home():
-    response = requests.get(BASE + 'sight/all')
-    #print(response.json())
+    try:
+        response = requests.get(BASE + 'sight/all')
+        print(response.json())
+    except:
+        return render_template('error.html', message = 'API not reached... ')
     if 'message' in response.json():
         print('message in response.json')
         return render_template('index.html', sights = 'no_data')
@@ -55,7 +58,6 @@ def post():
 
 
     
-    ''''''
 
 
 

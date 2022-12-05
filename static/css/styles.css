@@ -1,0 +1,17 @@
+body {
+  background-color: rgb(42, 42, 42);
+  color: rgb(0, 255, 0);
+  font-family: sans-serif;
+}
+
+ul {
+  padding: 10px;
+  list-style-type: none;
+
+  /*Centers the list*/
+  margin: 0 left;
+}
+
+a {
+  color: rgb(255, 0, 0);
+}

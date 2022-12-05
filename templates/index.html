@@ -1,38 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DiscoBernAPI</title>
-  </head>
-  <body style="background-color: rgb(42, 42, 42); color: white; font-family: sans-serif;">
-    <h1>HOME PAGE</h1>
-    {%if sights == 'no_data'%}
-    <p>sights: {{sights}}</p>
-    {%else%}
-    {% for sight in sights %}
-    <div>
-      <ul>
-        <li>ID: {{ sight['id'] }}</li>
-        <li>NAME: {{ sight['name'] }}</li>
-        <li>
-          <a href="http://127.0.0.1:8000/api/detail/{{ sight['id'] }}">
-            DETAILS</a
-          >
-        </li>
-        
-        </li>
-      </ul>
-    </div>
-    {%endfor%}
-    {%endif%}
-    <form action="/api/put" method="POST"><br>
-      <input type="number" name="id" id="id" required/><br>
-      <input type="name" name="name" id="name" required/><br>
-      <input type="text" name="text" id="text" required/><br>
-      <input type="number" name="zip" id="zip" required/><br>
-      <input type="submit" value="Create Sight" required/><br>
-    </form>
-  </body>
-</html>
+{% extends 'base.html' %} 
+
+{% block body %} 
+
+
+<h2>HOME PAGE</h2>
+{%if sights == 'no_data'%}
+<p>message: {{sights}}</p>
+<p>Create one first</p>
+{%else%}
+{% for sight in sights %}
+<div>
+  <ul>
+    <li>ID: {{ sight['id'] }}</li>
+    <li>NAME: {{ sight['name'] }}</li>
+    <li>
+      <a href="http://127.0.0.1:8000/api/detail/{{ sight['id'] }}">
+        DETAILS</a
+      >
+    </li>
+    
+    </li>
+  </ul>
+</div>
+{%endfor%}
+{%endif%}
+<form action="/api/put" method="POST"><br>
+  <p>ID:<input type="number" name="id" id="id" required/></p>
+  <p>NAME:<input type="name" name="name" id="name" required/></p>
+  <p>INFO:<input type="text" name="text" id="text" required/></p>
+  <p>ZIP:<input type="number" name="zip" id="zip" required/></p>
+  <p><input type="submit" value="Create Sight" required/></p>
+</form>
+{% endblock%}
