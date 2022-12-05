@@ -8,7 +8,7 @@
   </head>
   <body style="background-color: rgb(42, 42, 42); color: white">
     <h1>Testplatform for Discover Bern API solutions</h1>
-    {%if sights %} {% for sight in sights %}
+    {% for sight in sights %}
     <div>
       <ul>
         <li>ID: {{ sight['id'] }}</li>
@@ -20,16 +20,11 @@
             DETAILS</a
           >
         </li>
-        <li>
-          <a href="http://127.0.0.1:8000/api/delete/{{ sight['id'] }}">
-            REMOVE</a
-          >
+        
         </li>
       </ul>
     </div>
-    {%endfor%} {%else%}
-    <p>no data...</p>
-    {%endif%}
+    {%endfor%}
     <script>
       console.log("hello java script!");
     </script>
