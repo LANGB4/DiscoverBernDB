@@ -1,0 +1,20 @@
+{% extends 'base.html' %} 
+
+{% block body %} 
+
+
+<h2>HOME PAGE FOR MONGO Data</h2>
+<p>{{sights}}</p>
+{% for sight in sights %}
+<div>
+  <ul>
+    <li>ID:{{sight['_id']}}</li>
+    <li>NAME:{{sight['name']}}</li>
+    <li>TEXT: {{sight['Description']}}</li>
+    <li>buss top: {{sight['buss top']}}</li>    
+    </li>
+  </ul>
+</div>
+
+{%endfor%}
+{% endblock%}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+
+{% block body %} 
+
+
+<h2>Detail view from {{test['name']}}</h2>
+
+<div>
+  <ul>
+    <li>ID:{{test['_id']}}</li>
+    <li>NAME:{{test['name']}}</li>
+    <li>TEXT: {{test['Description']}}</li>
+    <li>buss top: {{test['buss top']}}</li>    
+    </li>
+  </ul>
+</div>
+
+
+{% endblock%}

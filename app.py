@@ -1,5 +1,5 @@
 from flask import Flask
-from mongo import mongo
+from mongodb import mongo
 from api import api
 
 app = Flask(__name__)
