@@ -1,9 +1,9 @@
 from flask import Flask, url_for
-from views import views
+from mongo import mongo
 from api import api
 
 app = Flask(__name__)
-app.register_blueprint(views, url_prefix='/views')
+app.register_blueprint(mongo, url_prefix='/mongo')
 app.register_blueprint(api, url_prefix='/api')
 
 if __name__ == '__main__':
