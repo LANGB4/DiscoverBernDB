@@ -54,6 +54,24 @@ def post():
     else:
         redirect('/api/')
 
+
+@api.route('/update/<sight_id>', methods=['POST', 'GET'])
+def update(sight_id):
+    response = requests.get(BASE + 'sight/' + sight_id)
+    if request.method == 'POST':
+        sight_name = request.form['name']
+        sight_text = request.form['text']
+        sight_zip = request.form['zip']
+        try:
+            response = requests.patch(BASE + 'sight/' + sight_id, {'name': sight_name, 'text': sight_text, 'zip': sight_zip})
+            return redirect('/api/')
+        except:
+            return render_template('index.html', sights = 'something went wrong..')
+    else: 
+        return render_template('update.html', sights = response.json())
+        
+    
+
     
 
 
