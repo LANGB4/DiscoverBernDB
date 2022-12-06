@@ -1,20 +1,18 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %} {% block body %}
+<a href="http://127.0.0.1:8000/api">Change to API Solution</a>
+<h2>Home Page for local MongoDB</h2>
 
-{% block body %} 
-
-
-<h2>HOME PAGE FOR MONGO Data</h2>
-<p>{{sights}}</p>
 {% for sight in sights %}
 <div>
   <ul>
     <li>ID:{{sight['_id']}}</li>
     <li>NAME:{{sight['name']}}</li>
-    <li>TEXT: {{sight['Description']}}</li>
-    <li>buss top: {{sight['buss top']}}</li>    
+    <li>
+      <a href="http://127.0.0.1:8000/mongo/detail/{{ sight['_id'] }}">
+        DETAILS</a
+      >
     </li>
   </ul>
 </div>
 
-{%endfor%}
-{% endblock%}
+{%endfor%} {% endblock%}

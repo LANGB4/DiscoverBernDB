@@ -1,19 +1,22 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %} {% block body %}
 
-{% block body %} 
-
-
-<h2>Detail view from {{test['name']}}</h2>
+<h2>Detail view from {{sight['name']}}</h2>
 
 <div>
   <ul>
-    <li>ID:{{test['_id']}}</li>
-    <li>NAME:{{test['name']}}</li>
-    <li>TEXT: {{test['Description']}}</li>
-    <li>buss top: {{test['buss top']}}</li>    
+    <li>Name:{{sight['name']}}</li>
+    <li>Text: {{sight['Description']}}</li>
+    <li>Adress: {{sight['address']}}</li>
+    <li>Bus stop: {{sight['buss top']}}</li>
+    <li>
+      <a href="http://127.0.0.1:8000/mongo/"> BACK</a>
+    </li>
+    <li>
+      <a href="http://127.0.0.1:8000/mongo/delete/{{ sight['_id'] }}">
+        REMOVE</a
+      >
     </li>
   </ul>
 </div>
-
 
 {% endblock%}

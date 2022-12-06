@@ -1,18 +1,7 @@
 from pymongo import MongoClient
-from bson.objectid import ObjectId
-
-import json
 from bson import ObjectId
-from flask import Blueprint, render_template, jsonify, request
+from flask import Blueprint, render_template, jsonify, request, redirect
 
-'''class JSONEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, ObjectId):
-            return str(o)
-        return json.JSONEncoder.default(self, o)
-'''
-
-  
 
 client = MongoClient('localhost', 27017)
 
@@ -70,19 +59,19 @@ def find_by(id):
 
 mongo = Blueprint(__name__, "mongo")
 
-
-@mongo.route('/<id>')
-def detail(id):
-    #result = find_by(id)
-    result = DiscoBern.Denkmal.find_one(ObjectId(id))
-    #print(find_by('63724a567a4a7a7fb075a310'))
-    #print(result)
-    return render_template('mongo_detail.html', test = result)
-
-
 @mongo.route('/')
 def home():
     results = DiscoBern.Denkmal.find()
     print(type(results))    
     return render_template('mongo.html', sights = results)
 
+@mongo.route('/detail/<id>')
+def detail(id):
+    result = DiscoBern.Denkmal.find_one(ObjectId(id))
+    return render_template('mongo_detail.html', sight = result)
+
+
+@mongo.route('/delete/<id>')
+def delete(id):
+    DiscoBern.Denkmal.delete_one(DiscoBern.Denkmal.find_one(ObjectId(id)))
+    return redirect('/mongo/')
