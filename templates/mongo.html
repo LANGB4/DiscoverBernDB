@@ -15,4 +15,32 @@
   </ul>
 </div>
 
-{%endfor%} {% endblock%}
+{%endfor%}
+
+<form action="/mongo/put" method="POST">
+  <br />
+  <p>Name:<input type="name" name="name" id="name" required /></p>
+  <p>Text:<input type="text" name="text" id="text" /></p>
+  <p>
+    longitude:<input
+      type="number"
+      step="0.000001"
+      name="long"
+      id="long"
+      required
+    />
+  </p>
+  <p>
+    latitude:<input
+      type="number"
+      step="0.000001"
+      name="lat"
+      id="lat"
+      required
+    />
+  </p>
+  <p>Comment:<input type="text" name="comment" id="comment" /></p>
+  <p><input type="submit" value="Create Sight" required /></p>
+</form>
+
+{% endblock%}

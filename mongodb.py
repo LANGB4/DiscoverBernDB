@@ -75,3 +75,20 @@ def detail(id):
 def delete(id):
     DiscoBern.Denkmal.delete_one(DiscoBern.Denkmal.find_one(ObjectId(id)))
     return redirect('/mongo/')
+
+
+@mongo.route('/put', methods=['POST', 'GET'])
+def post():
+    if request.method == 'POST':
+        sight_name = request.form['name']
+        sight_text = request.form['text']
+        sight_long = request.form['long']
+        sight_lat = request.form['lat']
+        sight_comment = request.form['comment']
+        try:
+            DiscoBern.Denkmal.insert_one({'name': sight_name, 'text': sight_text, 'long': sight_long, 'lat': sight_lat, 'comment': sight_comment})
+            return redirect('/mongo/')
+        except:
+            return render_template('mongo.html', sights = 'something went wrong..')
+    else:
+        redirect('/mongo/')    
