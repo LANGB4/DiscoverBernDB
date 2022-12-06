@@ -52,7 +52,7 @@ def post():
         except:
             return render_template('index.html', sights = 'something went wrong..')
     else:
-        redirect('/api/')
+        return redirect('/api/')
 
 
 @api.route('/update/<sight_id>', methods=['POST', 'GET'])
