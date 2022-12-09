@@ -26,5 +26,13 @@ def home():
     return render_template('mongo.html', test = result)
 
 
+name': request.form['name'],
+                                        'text': request.form['text'],
+                                        'long': request.form['long'],
+                                        'lat': request.form['lat'],
+                                        'comment': request.form['comment']
+
 
 '''
+
+

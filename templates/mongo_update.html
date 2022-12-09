@@ -2,7 +2,7 @@
 
 <h2>UPDATE {{sight['name']}}</h2>
 <div class="form">
-  <form action="/mongo/update/{{sight['id']}}" method="POST">
+  <form action="/mongo/update/{{sight['_id']}}" method="POST">
     <p>
       Name:<input
         type="name"
@@ -33,6 +33,14 @@
         id="lat"
         value="{{sight['lat']}}"
         required
+      />
+    </p>
+    <p>
+      comment:<input
+        type="text"
+        name="comment"
+        id="comment"
+        value="{{sight['comment']}}"
       />
     </p>
     <p><input type="submit" value="Update" /></p>
