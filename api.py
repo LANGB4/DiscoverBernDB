@@ -14,7 +14,7 @@ def home():
         response = requests.get(BASE + 'sight/all')
         print(response.json())
     except:
-        return render_template('error.html', message = 'API not reached... ')
+        return render_template('error.html', message = 'API not reached... Download API here from github.com/LANGB4/DiscoverBernDB')
     if 'message' in response.json():
         print('message in response.json')
         return render_template('API/index.html', sights = 'no_data')
@@ -25,7 +25,6 @@ def home():
 @api.route('/detail/<sight_id>')
 def get_json(sight_id):
     response = requests.get(BASE + 'sight/' + sight_id)
-    
     return render_template('API/detail.html', 
                             id = sight_id,
                             info = response.json()['text'],
@@ -50,7 +49,7 @@ def post():
             print(response.json())
             return redirect('/api/')
         except:
-            return render_template('API/index.html', sights = 'something went wrong..')
+            return render_template('Error.html', message = 'something went wrong posting your sight..')
     else:
         return redirect('/api/')
 
@@ -66,7 +65,7 @@ def update(sight_id):
             response = requests.patch(BASE + 'sight/' + sight_id, {'name': sight_name, 'text': sight_text, 'zip': sight_zip})
             return redirect('/api/')
         except:
-            return render_template('API/index.html', sights = 'something went wrong..')
+            return render_template('Error.html', message = 'something went wrong updating your sight..')
     else: 
         return render_template('API/update.html', sights = response.json())
         
