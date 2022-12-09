@@ -1,6 +1,12 @@
-{% extends 'base.html' %} {% block body %}
+{% extends 'base.html' %} {% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='css/mongo_styles.css') }}"
+/>
+{% endblock%} {% block body %}
 <a href="http://127.0.0.1:8000/api">Change to API Solution</a>
-<h2>Home Page for local MongoDB</h2>
+<h2>Home Page for MongoDB Testplatform</h2>
 
 {% for sight in sights %}
 <div>

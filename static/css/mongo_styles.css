@@ -1,0 +1,23 @@
+body {
+  color: #25161b;
+  background: #f3cba5;
+  font-family: sans-serif;
+}
+
+ul {
+  padding: 10px;
+  list-style-type: none;
+
+  /*Centers the list*/
+  margin: 0 left;
+}
+
+a {
+  color: rgb(255, 0, 0);
+}
+
+.mongobody {
+  color: #25161b;
+  background: #f3cba5;
+  font-family: sans-serif;
+}
