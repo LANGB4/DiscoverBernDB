@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from bson import ObjectId
-from flask import Blueprint, render_template, jsonify, request, redirect
+from flask import Blueprint, render_template, request, redirect
 
 
 client = MongoClient('localhost', 27017)
@@ -12,8 +12,8 @@ mongo = Blueprint(__name__, "mongo")
 @mongo.route('/')
 def home():
     results = DiscoBern.Denkmal.find()
-    print('results', results)    
     return render_template('/mongo/index.html', sights = results)
+
 
 @mongo.route('/detail/<id>')
 def detail(id):
@@ -38,28 +38,27 @@ def post():
                                         'comment': request.form['comment']})
             return redirect('/mongo/')
         except:
-            return render_template('mongo/index.html', sights = 'something went wrong..')
+            return render_template('Error.html', message = 'something went wrong posting your sight..')
     else:
         return redirect('/mongo/')    
+
 
 @mongo.route('/update/<id>', methods=['POST', 'GET'])
 def update(id):
     result = DiscoBern.Denkmal.find_one(ObjectId(id))
     if request.method == 'POST':
-        print('--------  POST Method called ---------------')
         try:
             DiscoBern.Denkmal.update_one(DiscoBern.Denkmal.find_one(ObjectId(id)),
-                                        {"$set": { 'name': request.form['name'],
+                                        {"$set": 
+                                        {'name': request.form['name'],
                                         'text': request.form['text'],
                                         'long': request.form['long'],
                                         'lat': request.form['lat'],
-                                        'comment': request.form['comment'] }})
+                                        'comment': request.form['comment']}})
             return redirect('/mongo/')
         except:
-            print('--------Except called ---------------')
             return render_template('Error.html', messsage = 'mongo update failed')
     else:
-        print('--------ELSE called ---------------')
         return render_template('mongo/update.html', sight = result)
         
     

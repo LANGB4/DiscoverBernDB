@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, abort, url_for, request
+from flask import Blueprint, render_template, redirect, request
 import requests
 
 
@@ -12,9 +12,8 @@ BASE = 'http://127.0.0.1:5000/'
 def home():
     try:
         response = requests.get(BASE + 'sight/all')
-        print(response.json())
     except:
-        return render_template('error.html', message = 'API not reached... Download API here from github.com/LANGB4/DiscoverBernDB')
+        return render_template('error.html', message = 'API not reached... ')
     if 'message' in response.json():
         print('message in response.json')
         return render_template('API/index.html', sights = 'no_data')
@@ -31,25 +30,22 @@ def get_json(sight_id):
                             name = response.json()['name'],
                             zip = response.json()['zip'],)
 
+
 @api.route('/delete/<sight_id>')
 def delete(sight_id):
-    response = requests.delete(BASE + 'sight/' + sight_id)
-    print(response)
+    requests.delete(BASE + 'sight/' + sight_id)
     return redirect('/api/')
+
 
 @api.route('/put', methods=['POST', 'GET'])
 def post():
     if request.method == 'POST':
-        sight_id = request.form['id']
-        sight_name = request.form['name']
-        sight_text = request.form['text']
-        sight_zip = request.form['zip']
-        try:
-            response = requests.put(BASE + 'sight/' + sight_id, {'name': sight_name, 'text': sight_text, 'zip': sight_zip})
-            print(response.json())
-            return redirect('/api/')
-        except:
-            return render_template('Error.html', message = 'something went wrong posting your sight..')
+        requests.put(BASE + 'sight/' + request.form['id'],
+                    {'name': request.form['name'],
+                    'text': request.form['text'],
+                    'zip': request.form['zip']})
+        return redirect('/api/')
+            
     else:
         return redirect('/api/')
 
@@ -58,14 +54,11 @@ def post():
 def update(sight_id):
     response = requests.get(BASE + 'sight/' + sight_id)
     if request.method == 'POST':
-        sight_name = request.form['name']
-        sight_text = request.form['text']
-        sight_zip = request.form['zip']
-        try:
-            response = requests.patch(BASE + 'sight/' + sight_id, {'name': sight_name, 'text': sight_text, 'zip': sight_zip})
-            return redirect('/api/')
-        except:
-            return render_template('Error.html', message = 'something went wrong updating your sight..')
+        response = requests.patch(BASE + 'sight/' + sight_id,
+                                {'name': request.form['name'],
+                                'text': request.form['text'],
+                                'zip': request.form['zip']})
+        return redirect('/api/')
     else: 
         return render_template('API/update.html', sights = response.json())
         
