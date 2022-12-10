@@ -7,9 +7,6 @@ body {
 ul {
   padding: 10px;
   list-style-type: none;
-
-  /*Centers the list*/
-  margin: 0 left;
 }
 
 a {

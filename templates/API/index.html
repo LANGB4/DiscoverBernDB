@@ -1,12 +1,12 @@
 {% extends 'base.html' %} 
 
 {% block head %} 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static',filename='css/api_styles.css') }}"
-    />
-    {% endblock%}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static',filename='css/api_styles.css') }}"
+/>
+{% endblock%}
 
 {% block body %} 
 
@@ -19,8 +19,8 @@
 {% for sight in sights %}
 <div>
   <ul>
-    <li>ID: {{ sight['id'] }}</li>
-    <li>NAME: {{ sight['name'] }}</li>
+    <li>ID:&emsp; {{ sight['id'] }}</li>
+    <li>NAME:&emsp; {{ sight['name'] }}</li>
     <li>
       <a href="http://127.0.0.1:8000/api/detail/{{ sight['id'] }}">
         DETAILS</a
@@ -33,28 +33,12 @@
 {%endfor%}
 {%endif%}
 <form action="/api/put" method="POST"><br>
-  <p>ID:<input type="number" name="id" id="id" required/></p>
-  <p>NAME:<input type="name" name="name" id="name" required/></p>
-  <p>INFO:<input type="text" name="text" id="text" required/></p>
-  <p>ZIP:<input type="number" name="zip" id="zip" required/></p>
+  <h3>Create a new Sight here:</h3>
+  <p>ID:&emsp;<input type="number" name="id" id="id" required/></p>
+  <p>NAME:&emsp;<input type="name" name="name" id="name" required/></p>
+  <p>INFO:&emsp;<input type="text" name="text" id="text" required/></p>
+  <p>ZIP:&emsp;<input type="number" name="zip" id="zip" required/></p>
   <p><input type="submit" value="Create Sight" required/></p>
 </form>
-
-<table style=" border: 1px solid black;">
-  <tr>
-    <th>Value</th>
-    <th>Input</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-</table>
 
 {% endblock%}

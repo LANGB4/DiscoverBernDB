@@ -1,38 +1,65 @@
-'''from flask import Blueprint, render_template, jsonify, request
-#from mongodb import Bundeshaus, Kindlifresserbrunnen, show_all, find_coll, find_by, JSONEncoder
 from pymongo import MongoClient
 from bson import ObjectId
-from bson.objectid import ObjectId
-
-
-
-mongo = Blueprint(__name__, "mongo")
+from flask import Blueprint, render_template, jsonify, request, redirect
 
 
 client = MongoClient('localhost', 27017)
 
-DiscoBern =  client.Denkmal
+DiscoBern = client.DiscoBern
 
-
-
+mongo = Blueprint(__name__, "mongo")
 
 @mongo.route('/')
 def home():
-    
-    #result = find_by('63724a567a4a7a7fb075a310')
-    #print(find_by('63724a567a4a7a7fb075a310'))
-    #print(result)
-    result = DiscoBern.Denkmal.find_one(ObjectId('63724a567a4a7a7fb075a310'))
-    return render_template('mongo.html', test = result)
+    results = DiscoBern.Denkmal.find()
+    print('results', results)    
+    return render_template('/mongo/index.html', sights = results)
+
+@mongo.route('/detail/<id>')
+def detail(id):
+    result = DiscoBern.Denkmal.find_one(ObjectId(id))
+    return render_template('mongo/detail.html', sight = result)
 
 
-name': request.form['name'],
+@mongo.route('/delete/<id>')
+def delete(id):
+    DiscoBern.Denkmal.delete_one(DiscoBern.Denkmal.find_one(ObjectId(id)))
+    return redirect('/mongo/')
+
+
+@mongo.route('/put', methods=['POST', 'GET'])
+def post():
+    if request.method == 'POST':
+        try:
+            DiscoBern.Denkmal.insert_one({'name': request.form['name'],
                                         'text': request.form['text'],
                                         'long': request.form['long'],
                                         'lat': request.form['lat'],
-                                        'comment': request.form['comment']
+                                        'comment': request.form['comment']})
+            return redirect('/mongo/')
+        except:
+            return render_template('mongo/index.html', sights = 'something went wrong..')
+    else:
+        return redirect('/mongo/')    
 
-
-'''
-
-
+@mongo.route('/update/<id>', methods=['POST', 'GET'])
+def update(id):
+    result = DiscoBern.Denkmal.find_one(ObjectId(id))
+    if request.method == 'POST':
+        print('--------  POST Method called ---------------')
+        try:
+            DiscoBern.Denkmal.update_one(DiscoBern.Denkmal.find_one(ObjectId(id)),
+                                        {"$set": { 'name': request.form['name'],
+                                        'text': request.form['text'],
+                                        'long': request.form['long'],
+                                        'lat': request.form['lat'],
+                                        'comment': request.form['comment'] }})
+            return redirect('/mongo/')
+        except:
+            print('--------Except called ---------------')
+            return render_template('Error.html', messsage = 'mongo update failed')
+    else:
+        print('--------ELSE called ---------------')
+        return render_template('mongo/update.html', sight = result)
+        
+    

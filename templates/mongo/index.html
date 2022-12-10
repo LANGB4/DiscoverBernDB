@@ -9,10 +9,11 @@
 <h2>Home Page for MongoDB Testplatform</h2>
 
 {% for sight in sights %}
+
 <div>
   <ul>
-    <li>ID:{{sight['_id']}}</li>
-    <li>NAME:{{sight['name']}}</li>
+    <li>id:&emsp;{{sight['_id']}}</li>
+    <li>Name:&emsp;{{sight['name']}}</li>
     <li>
       <a href="http://127.0.0.1:8000/mongo/detail/{{ sight['_id'] }}">
         DETAILS</a
@@ -22,13 +23,13 @@
 </div>
 
 {%endfor%}
-
 <form action="/mongo/put" method="POST">
   <br />
-  <p>Name:<input type="name" name="name" id="name" required /></p>
-  <p>Text:<input type="text" name="text" id="text" /></p>
+  <h3>Create a new Sight here:</h3>
+  <p>Name:&emsp;<input type="name" name="name" id="name" required /></p>
+  <p>Text:&emsp;<input type="text" name="text" id="text" /></p>
   <p>
-    longitude:<input
+    longitude:&emsp;<input
       type="number"
       step="0.000001"
       name="long"
@@ -37,7 +38,7 @@
     />
   </p>
   <p>
-    latitude:<input
+    latitude:&emsp;<input
       type="number"
       step="0.000001"
       name="lat"
@@ -45,7 +46,7 @@
       required
     />
   </p>
-  <p>Comment:<input type="text" name="comment" id="comment" /></p>
+  <p>Comment:&emsp;<input type="text" name="comment" id="comment" /></p>
   <p><input type="submit" value="Create Sight" required /></p>
 </form>
 
