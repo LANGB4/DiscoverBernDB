@@ -4,10 +4,11 @@ from flask import Blueprint, render_template, request, redirect
 
 
 client = MongoClient('localhost', 27017)
-
 DiscoBern = client.DiscoBern
 
+
 mongo = Blueprint(__name__, "mongo")
+
 
 @mongo.route('/')
 def home():
