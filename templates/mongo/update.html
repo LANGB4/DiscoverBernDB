@@ -5,7 +5,6 @@
   href="{{ url_for('static',filename='css/mongo_styles.css') }}"
 />
 {% endblock%} {% block body %}
-
 <h2>UPDATE {{sight['name']}}</h2>
 <div class="form">
   <form action="/mongo/update/{{sight['_id']}}" method="POST">
