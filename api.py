@@ -56,7 +56,7 @@ def update(sight_id):
                                 {'name': request.form['name'],
                                 'text': request.form['text'],
                                 'zip': request.form['zip']})
-        return redirect('/api/')
+        return redirect('/api/detail/' + sight_id)
     else: 
         return render_template('API/update.html', sights = response.json())
         

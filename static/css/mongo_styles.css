@@ -12,3 +12,20 @@ ul {
 a {
   color: rgb(255, 0, 0);
 }
+
+.flexcontainer {
+  display: flex;
+  flex-wrap: wrap;
+
+  border: 3px solid #25161b;
+  justify-content: space-around;
+  overflow: auto;
+  margin: 50px;
+}
+
+.flexitem {
+  width: 200px;
+
+  padding: 10px;
+  margin: 20px;
+}

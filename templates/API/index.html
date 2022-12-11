@@ -6,28 +6,42 @@
 />
 {% endblock%} {% block body %}
 <a href="http://127.0.0.1:8000/mongo">Change to MongoDB Solution</a>
-<h2>Home Page of API Solutions</h2>
+<h2>API</h2>
+<h3>List of sights:</h3>
 {%if sights == 'no_data'%}
 <p>No sights found..</p>
 <p>Create one first</p>
 {%else%} {% for sight in sights %}
-<div>
-  <ul>
-    <li>ID:&emsp; {{ sight['id'] }}</li>
-    <li>NAME:&emsp; {{ sight['name'] }}</li>
-    <li>
-      <a href="http://127.0.0.1:8000/api/detail/{{ sight['id'] }}"> DETAILS</a>
+
+<ul class="flexcontainer">
+  <li class="flexitem">{{ sight['id'] }}</li>
+  <li class="flexitem">{{ sight['name'] }}</li>
+  <li class="flexitem">
+    <a href="http://127.0.0.1:8000/api/detail/{{ sight['id'] }}"> DETAILS</a>
+  </li>
+</ul>
+
+{%endfor%} {%endif%}
+<h3>Create a new sight here:</h3>
+<form action="/api/put" method="POST">
+  <ul class="flexcontainer">
+    <li class="flexitem">
+      ID: <br />
+      <input type="number" name="id" id="id" required />
+    </li>
+    <li class="flexitem">
+      Name:<br /><input type="name" name="name" id="name" required />
+    </li>
+    <li class="flexitem">
+      Info:<br /><input type="text" name="text" id="text" required />
+    </li>
+    <li class="flexitem">
+      Zip-Code:<br /><input type="number" name="zip" id="zip" required />
+    </li>
+    <li class="flexitem">
+      <input type="submit" value="Create Sight" required />
     </li>
   </ul>
-</div>
-{%endfor%} {%endif%}
-<form action="/api/put" method="POST">
-  <br />
-  <h3>Create a new Sight here:</h3>
-  <p>ID:&emsp;<input type="number" name="id" id="id" required /></p>
-  <p>NAME:&emsp;<input type="name" name="name" id="name" required /></p>
-  <p>INFO:&emsp;<input type="text" name="text" id="text" required /></p>
-  <p>ZIP:&emsp;<input type="number" name="zip" id="zip" required /></p>
-  <p><input type="submit" value="Create Sight" required /></p>
 </form>
+
 {% endblock%}

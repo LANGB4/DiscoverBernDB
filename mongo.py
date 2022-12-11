@@ -56,7 +56,7 @@ def update(id):
                                         'long': request.form['long'],
                                         'lat': request.form['lat'],
                                         'comment': request.form['comment']}})
-            return redirect('/mongo/')
+            return redirect('/mongo/detail/' + id)
         except:
             return render_template('Error.html', messsage = 'mongo update failed')
     else:

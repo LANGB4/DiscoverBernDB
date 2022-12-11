@@ -5,17 +5,17 @@
   href="{{ url_for('static',filename='css/mongo_styles.css') }}"
 />
 {% endblock%} {% block body %}
-<h2>Detail view from {{sight['name']}}</h2>
+<h2>{{sight['name']}}</h2>
 <div>
   <ul>
-    <li>Name:&emsp;{{sight['name']}}</li>
-    <li>Text: &emsp;{{sight['text']}}</li>
+    <li>{{sight['text']}}</li>
+    <li><br /></li>
     <li>longitude:&emsp; {{sight['long']}}</li>
     <li>latitute:&emsp; {{sight['lat']}}</li>
+    <li><br /></li>
     <li>comment:&emsp; {{sight['comment']}}</li>
-    <li>
-      <a href="http://127.0.0.1:8000/mongo/"> BACK</a>
-    </li>
+    <li><br /></li>
+
     <li>
       <a href="http://127.0.0.1:8000/mongo/delete/{{ sight['_id'] }}">
         REMOVE</a
@@ -25,6 +25,9 @@
       <a href="http://127.0.0.1:8000/mongo/update/{{ sight['_id'] }}">
         UPDATE</a
       >
+    </li>
+    <li>
+      <a href="http://127.0.0.1:8000/mongo/"> BACK</a>
     </li>
   </ul>
 </div>

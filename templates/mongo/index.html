@@ -6,44 +6,46 @@
 />
 {% endblock%} {% block body %}
 <a href="http://127.0.0.1:8000/api">Change to API Solution</a>
-<h2>Home Page of MongoDB Solutions</h2>
+<h2>MongoDB</h2>
+<h3>List of sights:</h3>
 {% for sight in sights %}
-<div>
-  <ul>
-    <li>id:&emsp;{{sight['_id']}}</li>
-    <li>Name:&emsp;{{sight['name']}}</li>
-    <li>
-      <a href="http://127.0.0.1:8000/mongo/detail/{{ sight['_id'] }}">
-        DETAILS</a
-      >
+
+<ul class="flexcontainer">
+  <li class="flexitem">{{sight['_id']}}</li>
+  <li class="flexitem">{{sight['name']}}</li>
+  <li class="flexitem">
+    <a href="http://127.0.0.1:8000/mongo/detail/{{ sight['_id'] }}"> DETAILS</a>
+  </li>
+</ul>
+
+{%endfor%}
+<h3>Create a new sight here:</h3>
+<form action="/mongo/put" method="POST">
+  <ul class="flexcontainer">
+    <li class="flexitem">
+      Name: <br />
+      <input type="name" name="name" id="name" required />
+    </li>
+    <li class="flexitem">
+      Text: <br />
+      <input type="text" name="text" id="text" />
+    </li>
+    <li class="flexitem">
+      longitude: <br />
+      <input type="number" step="0.000001" name="long" id="long" required />
+    </li>
+    <li class="flexitem">
+      latitude: <br />
+      <input type="number" step="0.000001" name="lat" id="lat" required />
+    </li>
+    <li class="flexitem">
+      Comment: <br />
+      <input type="text" name="comment" id="comment" />
+    </li>
+    <li class="flexitem">
+      <input type="submit" value="Create Sight" required />
     </li>
   </ul>
-</div>
-{%endfor%}
-<form action="/mongo/put" method="POST">
-  <br />
-  <h3>Create a new Sight here:</h3>
-  <p>Name:&emsp;<input type="name" name="name" id="name" required /></p>
-  <p>Text:&emsp;<input type="text" name="text" id="text" /></p>
-  <p>
-    longitude:&emsp;<input
-      type="number"
-      step="0.000001"
-      name="long"
-      id="long"
-      required
-    />
-  </p>
-  <p>
-    latitude:&emsp;<input
-      type="number"
-      step="0.000001"
-      name="lat"
-      id="lat"
-      required
-    />
-  </p>
-  <p>Comment:&emsp;<input type="text" name="comment" id="comment" /></p>
-  <p><input type="submit" value="Create Sight" required /></p>
 </form>
+
 {% endblock%}
